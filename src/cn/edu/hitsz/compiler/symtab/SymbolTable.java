@@ -24,7 +24,11 @@ public class SymbolTable {
      * @throws RuntimeException 该符号在表中不存在
      */
     public SymbolTableEntry get(String text) {
-        throw new NotImplementedException();
+        SymbolTableEntry symbolTableEntry = new SymbolTableEntry(text);
+        // TODO
+
+        return symbolTableEntry;
+//        throw new NotImplementedException();
     }
 
     /**

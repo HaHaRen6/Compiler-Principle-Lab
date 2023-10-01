@@ -4,6 +4,7 @@ import cn.edu.hitsz.compiler.NotImplementedException;
 import cn.edu.hitsz.compiler.symtab.SymbolTable;
 import cn.edu.hitsz.compiler.utils.FileUtils;
 
+import java.io.*;
 import java.util.stream.StreamSupport;
 
 /**
@@ -28,10 +29,29 @@ public class LexicalAnalyzer {
      * @param path 路径
      */
     public void loadFile(String path) {
+        try {
+            InputStream inputStream = new FileInputStream(path);
+            String tmp  = null;
+            StringBuilder stringBuilder = new StringBuilder();
+            while (true) {
+                byte [] buffer = new byte[1024];
+                int len = inputStream.read(buffer);
+                if(len == -1) {
+                    break;
+                }
+                tmp = new String(buffer,0,len);
+                stringBuilder.append(tmp);
+            }
+            System.out.println(stringBuilder);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
         // TODO: 词法分析前的缓冲区实现
         // 可自由实现各类缓冲区
         // 或直接采用完整读入方法
-        throw new NotImplementedException();
+
     }
 
     /**

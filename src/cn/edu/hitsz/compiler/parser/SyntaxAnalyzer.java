@@ -39,7 +39,9 @@ public class SyntaxAnalyzer {
      */
     public void registerObserver(ActionObserver observer) {
         observers.add(observer);
-        observer.setSymbolTable(symbolTable);
+        for (ActionObserver listener : observers) {
+            observer.setSymbolTable(symbolTable);
+        }
     }
 
     /**
@@ -98,7 +100,6 @@ public class SyntaxAnalyzer {
         // 你可以自行选择要如何使用该表格:
         // 是直接对 LRTable 调用 getAction/getGoto, 抑或是直接将 initStatus 存起来使用
         lrTable = table;
-
     }
 
     /**

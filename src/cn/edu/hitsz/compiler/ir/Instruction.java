@@ -1,9 +1,6 @@
 package cn.edu.hitsz.compiler.ir;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -79,6 +76,12 @@ public class Instruction {
         return operands.get(0);
     }
 
+    public Instruction swap() {
+        List<IRValue> list = new ArrayList<>();
+        list.add(this.operands.get(1));
+        list.add(this.operands.get(0));
+        return new Instruction(this.kind, this.result, list);
+    }
 
     //============================== 基础设施 ==============================
     @Override

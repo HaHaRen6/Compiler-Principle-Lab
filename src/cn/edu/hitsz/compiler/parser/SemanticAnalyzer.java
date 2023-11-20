@@ -1,6 +1,5 @@
 package cn.edu.hitsz.compiler.parser;
 
-import cn.edu.hitsz.compiler.NotImplementedException;
 import cn.edu.hitsz.compiler.lexer.Token;
 import cn.edu.hitsz.compiler.parser.table.Production;
 import cn.edu.hitsz.compiler.parser.table.Status;
@@ -11,8 +10,7 @@ import java.util.Stack;
 
 // 实验三: 实现语义分析
 public class SemanticAnalyzer implements ActionObserver {
-    private static int index = 0;
-    private Stack<Token> tokens = new Stack<>();
+    private final Stack<Token> tokens = new Stack<>();
     private SymbolTable memTable = new SymbolTable();
 
     @Override

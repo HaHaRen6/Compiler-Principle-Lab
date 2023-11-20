@@ -1,6 +1,5 @@
 package cn.edu.hitsz.compiler.parser;
 
-import cn.edu.hitsz.compiler.NotImplementedException;
 import cn.edu.hitsz.compiler.ir.IRImmediate;
 import cn.edu.hitsz.compiler.ir.IRValue;
 import cn.edu.hitsz.compiler.ir.IRVariable;
@@ -68,7 +67,6 @@ public class IRGenerator implements ActionObserver {
             case 1, 10, 12, 14, 15 -> {    // E -> A;
 
             }
-//            case 2, 3, 4, 5, 13 -> {
             default -> {
             }
         }

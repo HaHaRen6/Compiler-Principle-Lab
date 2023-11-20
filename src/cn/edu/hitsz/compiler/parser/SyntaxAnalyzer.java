@@ -1,6 +1,5 @@
 package cn.edu.hitsz.compiler.parser;
 
-import cn.edu.hitsz.compiler.NotImplementedException;
 import cn.edu.hitsz.compiler.lexer.Token;
 import cn.edu.hitsz.compiler.parser.table.*;
 import cn.edu.hitsz.compiler.symtab.SymbolTable;
@@ -87,7 +86,7 @@ public class SyntaxAnalyzer {
         // 你可以自行选择要如何存储词法单元, 譬如使用迭代器, 或是栈, 或是干脆使用一个 list 全存起来
         // 需要注意的是, 在实现驱动程序的过程中, 你会需要面对只读取一个 token 而不能消耗它的情况,
         // 在自行设计的时候请加以考虑此种情况
-        for (Token token:tokens) {
+        for (Token token : tokens) {
             myTokens.add(token);
         }
     }
@@ -131,22 +130,21 @@ public class SyntaxAnalyzer {
                     j--;
                     final var production = action.getProduction();
                     callWhenInReduce(currentStatus, production);
-                    List<String> splitProduction2Words = Arrays.stream(production.toString().split(" ")).toList();
+                    List<String> splitProduction2Words = Arrays.stream(
+                            production.toString().split(" ")).toList();
                     for (int i = 0; i < splitProduction2Words.size() - 2; i++) {
                         statusStack.pop();
                     }
-                    statusStack.push(lrTable.getGoto(statusStack.peek(), new NonTerminal(splitProduction2Words.get(0))));
+                    statusStack.push(lrTable.getGoto(
+                            statusStack.peek(), new NonTerminal(splitProduction2Words.get(0))));
                 }
-
                 case Accept -> {
                     callWhenInAccept(currentStatus);
                     return;
                 }
-
                 case Error -> {
                     throw new RuntimeException("语法分析错误");
                 }
-
             }
         }
     }

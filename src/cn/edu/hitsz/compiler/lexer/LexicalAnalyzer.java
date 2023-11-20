@@ -1,10 +1,9 @@
 package cn.edu.hitsz.compiler.lexer;
 
-import cn.edu.hitsz.compiler.NotImplementedException;
 import cn.edu.hitsz.compiler.symtab.SymbolTable;
 import cn.edu.hitsz.compiler.utils.FileUtils;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.Objects;
 import java.util.stream.StreamSupport;
 
 /**
- * TODO: 实验一: 实现词法分析
+ * 实验一: 实现词法分析
  * <br>
  * 你可能需要参考的框架代码如下:
  *
@@ -50,14 +49,14 @@ public class LexicalAnalyzer {
                     continue;
                 } else if (c == '=' || c == ';' || c == '+' || c == ',' || c == '-' ||
                         c == '*' || c == '/' || c == '(' || c == ')') {
-                    if (rowTokens.size() != 0) {
+                    if (!rowTokens.isEmpty()) {
                         tokens.add(String.join("", rowTokens));
                     }
                     tokens.add(Character.toString(c));
                     rowTokens = null;
                     continue;
                 } else if (c == ' ') {
-                    if (rowTokens.size() != 0) {
+                    if (!rowTokens.isEmpty()) {
                         tokens.add(String.join("", rowTokens));
                     }
                     rowTokens = null;
@@ -97,7 +96,7 @@ public class LexicalAnalyzer {
                 System.out.println(tokenList.get(tokenList.size() - 1));
             }
         }
-        assert(tokenList.size() != 0);
+        assert(!tokenList.isEmpty());
         tokenList.add(Token.eof());
         System.out.println((tokenList));
     }
